@@ -2,6 +2,8 @@ import './App.css';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { handleInitialData } from './service/service'
+import StepOne from './steps/StepOne';
+import StepTwo from './steps/StepTwo';
 
 
 
@@ -15,6 +17,7 @@ function App() {
   const [codes, setCodes] = useState([0, 0, 0, 0]);
   const [codesRefs, setcodesRefs] = React.useState([]);
   const [firstFocus, setFirstFocus] = React.useState(true);
+  const [step, setStep] = React.useState(1)
 
   useEffect(() => {
     setcodesRefs(codesRefs => (
@@ -51,9 +54,15 @@ function App() {
     />
   )
 
+  const changeStep = (step) => {
+    setStep(step)
+  }
+
   return (
     <>
-      {CodeInputs}
+      {/* {CodeInputs} */}
+      {step === 1 && <StepOne step={step} getStep={changeStep} />}
+      {step === 2 && <StepTwo step={step} getStep={changeStep} />}
     </>
   );
 }
