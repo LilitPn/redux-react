@@ -1,12 +1,12 @@
-import { FETCH_USERINFO_FULFILLED, FETCH_USERINFO_REJECTED, FETCH_USERINFO, PENDING,GET_STORE_DATA } from '../actions/actions';
+import { FETCH_USERINFO_FULFILLED, FETCH_USERINFO_REJECTED, FETCH_USERINFO, PENDING } from '../actions/actions';
 
-const initialState = {
-  isLoading: true,
+export const initialState = {
+  isLoading: false,
   user: [],
   error: '',
 };
 
-const user = (state = [], action) => {
+const user = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USERINFO:
       return {
@@ -32,8 +32,6 @@ const user = (state = [], action) => {
         isLoading: true,
         error: ''
       };
-    case GET_STORE_DATA:
-      return state;
     default:
       return state;
   }

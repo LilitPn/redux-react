@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { dispatch } from 'redux';
-import './styles.css'
-export default function StepTwo(props) {
+import React, { useEffect, useState } from 'react';
+import { connect } from "react-redux";
+
+import './styles.css';
+
+
+export function StepTwo(props) {
     const codePattern = /^\d{4}$/;
 
     const [codes, setCodes] = useState([0, 0, 0, 0]);
@@ -51,11 +53,7 @@ export default function StepTwo(props) {
 
     const handleChange = () => {
         if (!checkValidation()) {
-            setIsLoading(true)
-            setTimeout(() => {
-                props.getStep(3);
-                setIsLoading(false)
-            }, 4000);
+            props.getStep(3);
         }
     }
 
@@ -83,3 +81,9 @@ export default function StepTwo(props) {
         </>
     )
 }
+
+const mapStateToProps = state => ({
+    count: state
+});
+
+export default connect(mapStateToProps, null)(StepTwo);

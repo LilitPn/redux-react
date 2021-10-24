@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
-import { handleUserInfoReq } from '../store/thunks/thunk'
+import { handleUserInfoReq } from '../store/thunks/thunk';
 
 export default function StepOne(props) {
     const idPattern = /^[0][1-9]\d{10}$|^[1-9]\d{10}$/;
@@ -12,7 +12,6 @@ export default function StepOne(props) {
     const [errors, setErrors] = useState(['', '']);
 
     const dispatch = useDispatch();
-
 
     const handleChange = () => {
         if (!checkValidation()) {

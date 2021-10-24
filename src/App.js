@@ -4,7 +4,7 @@ import StepTwo from './steps/StepTwo';
 
 
 function App() {
-  const [step, setStep] = React.useState(2);
+  const [step, setStep] = React.useState(1);
 
   const changeStep = (step) => {
     setStep(step);
