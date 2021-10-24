@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-
-
+import { useDispatch, useSelector } from 'react-redux'
+import { dispatch } from 'redux';
+import './styles.css'
 export default function StepTwo(props) {
     const codePattern = /^\d{4}$/;
 
@@ -8,6 +9,7 @@ export default function StepTwo(props) {
     const [codesRefs, setcodesRefs] = React.useState([]);
     const [firstFocus, setFirstFocus] = React.useState(true);
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setcodesRefs(codesRefs => (
@@ -49,7 +51,11 @@ export default function StepTwo(props) {
 
     const handleChange = () => {
         if (!checkValidation()) {
-            props.getStep(1);
+            setIsLoading(true)
+            setTimeout(() => {
+                props.getStep(3);
+                setIsLoading(false)
+            }, 4000);
         }
     }
 
@@ -73,6 +79,7 @@ export default function StepTwo(props) {
             <div>
                 <button onClick={handleChange}>change step 2</button>
             </div>
+            {isLoading && <div className="overlay">Loading...</div>}
         </>
     )
 }
